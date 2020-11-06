@@ -22,15 +22,15 @@ export interface Message {
     _id?: string;
     chatId?: string;
     content?: string;
-    createAt?: Date;
-    typeMessage?: MessageType;
-    ownerShip? : string;
+    createdAt?: Date;
+    type?: MessageType; 
+    ownership? : string;
     senderId?: string;
-    read?: String;
+    read?: boolean;
 }
 
 export enum MessageType {
-    TEXTE = 'string',
+    TEXT = 'string', // change value to "text"
     IMAGE = 'image'
 }
 

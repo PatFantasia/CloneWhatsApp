@@ -14,6 +14,11 @@ const StyledAvatar = styled.div`
     cursor: pointer;
     overflow: hidden;
 
+    ${props => props.big_middle && css`
+        width: 15rem;
+        height: 15rem;
+        border-radius: 50%;
+    `}
     ${props => props.big && css`
         width: 20rem;
         height: 20rem;

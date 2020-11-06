@@ -1,7 +1,7 @@
 import {Meteor} from 'meteor/meteor';
 import {Accounts} from 'meteor/accounts-base';
 import {User} from './models';
-
+import {ImagesCollection} from './images';
 
 export const dummyUsers : User[] = [
         {
@@ -100,9 +100,10 @@ export const dummyUsers : User[] = [
 if(Meteor.isServer){
     Meteor.publish('users.all', function(){
         return Meteor.users.find({},{
-            fields: {services:0}
+            fields: {services:0} //  à comprendre
         });
     });
+ 
 }
 
 Meteor.methods({
@@ -127,6 +128,17 @@ Meteor.methods({
                 }
             })
         }
-    } 
-    
+    }, 
+    'user.username': function(_id:string, username:string) {
+        Accounts.setUsername(_id, username);
+    },
+    'user.picture': function(imageId:string) {
+        const Image = ImagesCollection.findOne(imageId);
+        const picture = Image.link();
+        return Meteor.users.update({_id: this.userId},{
+            $set: {
+                "profile.picture": picture
+            }
+        })
+    }
 })

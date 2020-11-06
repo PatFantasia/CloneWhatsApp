@@ -15,6 +15,11 @@ const NormalTheme : any = {
             spanGrey: "#384c56"
         }
     },
+    messageView: {
+        color: {
+            background: "#eee"
+        }
+    },
     chatList: {
         color: {
             background: "white"

@@ -3,6 +3,12 @@ import StyledSearchbar from '../elements/StyledSearchbar';
 import FontAwesome from 'react-fontawesome';
 
 const Searchbar = (props:any):JSX.Element => {
+    const [state, setState] = React.useState<string>("");
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement>): void => {
+        const pattern = e.target.value;
+        setState(pattern);
+        props.onSearch(pattern); 
+    }
     return (
         <StyledSearchbar>
             <label className="searchbar--label">
@@ -12,7 +18,9 @@ const Searchbar = (props:any):JSX.Element => {
                 />
                 <input 
                     className="searchbar--input"
-                    placeholder="Rechercher ou démarer une discussion"
+                    placeholder={props.placeholder}
+                    value={state}
+                    onChange={handleChange}
                 />
             </label>
             

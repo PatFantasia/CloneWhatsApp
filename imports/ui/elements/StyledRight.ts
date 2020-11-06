@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const StyledRight = styled.div`
     display: flex;
@@ -6,6 +6,10 @@ const StyledRight = styled.div`
     width: 65%;
     height: 100%;
     background: red;
+    ${props => props.OPVisible && css`
+        width: 40%;
+        border-right: 0.1rem solid rgba(0,0,0,0.2);
+    `}
 `
 
 export default StyledRight;

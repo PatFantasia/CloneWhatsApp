@@ -3,21 +3,24 @@ import StyledHeader from '../elements/StyledHeader';
 import FontAwesome from 'react-fontawesome';
 
 const Header = (props:any):JSX.Element => {
-    const {icons, iconClass} = props;
+    const {icons, iconClass, OPVisible} = props;
     const renderIcons = ():JSX.Element[] => {
-        return icons.map((icon:string, i:number) => {
+        return icons.map((icon:any, i:number) => {
+            // console.log('name icon : ', icon);
+            
             return (
                 <FontAwesome
                     key={i}
                     className={iconClass}
-                    name={icon}
+                    name={icon.name}
+                    onClick={icon.func}
                 />
             )
             
         })
     }
     return (
-        <StyledHeader>
+        <StyledHeader OPVisible={OPVisible}  >
             {props.children}
             <div className= {props.iconsWidthSmall? "icons--left small" : "icons--left"} >
                 {renderIcons()}
